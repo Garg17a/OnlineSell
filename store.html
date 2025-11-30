@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tiwana Nutrition — Tiwana Cattle Feed Dealer</title>
+  <meta name="description" content="Authorized Tiwana dealer — full product nutrition, composition, feeding recommendations, online orders, WhatsApp & Razorpay ready." />
+  <style>
+    /* ---------- Base ---------- */
+    :root{
+      --green:#0b6623;
+      --accent:#ff9900;
+      --muted:#6b6b6b;
+      --card:#ffffff;
+      --radius:14px;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:#f7f7f8;color:#111;line-height:1.45}
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* ---------- Header ---------- */
+    header{background:linear-gradient(90deg,var(--green),#0a5a1d);color:#fff;position:sticky;top:0;z-index:40;box-shadow:0 6px 18px rgba(2,20,10,0.12)}
+    header .bar{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:56px;height:56px;border-radius:8px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+    .brand h1{font-size:20px;letter-spacing:0.2px}
+    nav .links{display:flex;gap:18px;align-items:center}
+    nav a{color:#fff;text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:rgba(255,255,255,0.06)}
+
+    /* ---------- Hero ---------- */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:30px;align-items:center;padding:48px 0}
+    .hero .left h2{font-size:34px;color:#fff;margin-bottom:12px}
+    .hero p.lead{color:#f0f6f0;max-width:70%;margin-bottom:18px}
+    .hero .ctas{display:flex;gap:12px}
+    .btn{background:var(--accent);color:#111;padding:12px 18px;border-radius:12px;border:none;font-weight:700;cursor:pointer}
+    .btn.secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.18)}
+    .hero .card{background:rgba(255,255,255,0.95);padding:18px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.12)}
+    .hero .card h3{margin-bottom:8px;font-size:18px;color:var(--green)}
+    .hero .card p{font-size:14px;color:#333}
+
+    /* ---------- Gallery slider ---------- */
+    .gallery{display:flex;gap:14px;overflow-x:auto;padding:14px 0}
+    .gallery img{height:180px;border-radius:12px;flex:0 0 auto;margin-right:6px;object-fit:cover;box-shadow:0 6px 18px rgba(0,0,0,0.12)}
+
+    /* ---------- Products grid ---------- */
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .card{background:var(--card);border-radius:12px;padding:14px;box-shadow:0 10px 28px rgba(8,16,10,0.06)}
+    .card .media{height:170px;border-radius:10px;overflow:hidden}
+    .card h4{margin-top:12px;font-size:18px}
+    .card p.price{color:var(--green);font-weight:800;margin-top:6px}
+    .card .row{display:flex;gap:8px;margin-top:12px}
+    .pill{background:#f1f6f1;color:var(--green);padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}
+
+    /* ---------- Tabs / Nutrition ---------- */
+    .tabs{display:flex;gap:8px;border-radius:10px;background:#fff;padding:8px;border:1px solid #eee;overflow:auto}
+    .tabs button{background:transparent;border:0;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700}
+    .tabs button.active{background:var(--green);color:#fff}
+    .nutri-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+    table{width:100%;border-collapse:collapse;background:transparent}
+    table th, table td{padding:10px;border-bottom:1px solid #eee;text-align:left}
+    table th{background:#fafafa;font-weight:700}
+    .download-box{display:flex;gap:10px;align-items:center}
+
+    /* ---------- Cart / Checkout panel ---------- */
+    #cart {position:fixed;right:20px;bottom:20px;background:var(--green);color:#fff;padding:10px 14px;border-radius:999px;box-shadow:0 12px 30px rgba(2,20,10,0.3);cursor:pointer;z-index:100}
+    /* slide out cart panel */
+    .cart-panel{position:fixed;right:0;top:0;bottom:0;width:380px;background:#fff;z-index:120;box-shadow:-10px 0 40px rgba(4,12,4,0.18);transform:translateX(100%);transition:transform .32s}
+    .cart-panel.open{transform:translateX(0)}
+    .cart-panel header{padding:18px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
+    .cart-list{padding:14px;overflow:auto;height:calc(100vh - 160px)}
+    .cart-footer{padding:14px;border-top:1px solid #eee}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* ---------- Dealer / contact ---------- */
+    .two-col{display:grid;grid-template-columns:1fr 420px;gap:24px}
+    .map{height:280px;border-radius:12px;background:#ddd;display:flex;align-items:center;justify-content:center;color:#666}
+
+    /* ---------- Responsive ---------- */
+    @media (max-width:920px){
+      .hero{grid-template-columns:1fr; padding:28px 0}
+      .two-col{grid-template-columns:1fr}
+      .hero p.lead{max-width:100%}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container bar">
+      <div class="brand">
+        <img src="Tiwana-8000-Shadow-1072x1536 (1).png" alt="Tiwana logo">
+        <div>
+          <h1>Tiwana Nutrition — Dealer</h1>
+          <div class="small">Authorized distributor • Retail & Wholesale</div>
+        </div>
+      </div>
+
+      <nav>
+        <span class="links">
+          <a href="#home">Home</a>
+          <a href="#products">Products</a>
+          <a href="#nutrition">Nutrition</a>
+          <a href="#downloads">Downloads</a>
+          <a href="#dealers">Dealers</a>
+          <a href="#contact">Contact</a>
+          <a href="javascript:void(0)" id="openCartBtn" onclick="openCart()">Cart(<span id="cartCount">0</span>)</a>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container" style="display:flex;align-items:center;gap:24px">
+      <div class="left" style="flex:1">
+        <h2>Trusted feed formulations for healthier herds</h2>
+        <p class="lead">Tiwana nutrition portfolio — milk boosters, calf-starters, heifer feeds and high-protein pellets. Browse nutrition facts, download datasheets and place orders online.</p>
+        <div class="ctas">
+          <button class="btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Products</button>
+          <button class="btn secondary" onclick="document.getElementById('downloads').scrollIntoView({behavior:'smooth'})">Product Datasheets</button>
+        </div>
+      </div>
+
+      <div style="width:420px">
+        <div class="card">
+          <h3>Quick Order</h3>
+          <p class="small">Call / WhatsApp: <strong>+91 98765 43210</strong></p>
+          <div style="margin-top:12px">
+            <input id="quickName" placeholder="Your name" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px">
+            <input id="quickPhone" placeholder="Phone / WhatsApp" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px">
+            <select id="quickProduct" style="width:100%;padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px">
+              <!-- JS populates -->
+            </select>
+            <div style="display:flex;gap:8px">
+              <button class="btn" onclick="quickOrder()">Request Call</button>
+              <a id="quickWhats" class="btn secondary" href="#" target="_blank" style="text-decoration:none">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <h2>Product Gallery</h2>
+      <div class="gallery" id="galleryRow" aria-hidden="false">
+        <!-- images injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="section" id="products">
+    <div class="container">
+      <h2>Our Tiwana Products</h2>
+
+      <!-- search/filter -->
+      <div style="display:flex;gap:12px;align-items:center;margin-bottom:16px">
+        <input id="search" placeholder="Search product name" style="flex:1;padding:10px;border-radius:8px;border:1px solid #eee">
+        <select id="filterCat" style="width:220px;padding:10px;border-radius:8px;border:1px solid #eee">
+          <option value="">All Categories</option>
+          <option value="Starter">Starter</option>
+          <option value="Dairy">Dairy</option>
+          <option value="Grower">Grower</option>
+          <option value="Supplements">Supplements</option>
+        </select>
+        <button class="btn" onclick="applyFilter()">Apply</button>
+      </div>
+
+      <div class="products-grid" id="productList" aria-live="polite">
+        <!-- JS injects product cards -->
+      </div>
+    </div>
+  </section>
+
+  <!-- NUTRITION / TABS -->
+  <section class="section" id="nutrition">
+    <div class="container">
+      <h2>Nutrition & Composition</h2>
+
+      <div style="display:flex;gap:20px;align-items:flex-start">
+        <div style="flex:1">
+          <div class="tabs" role="tablist" id="nutriTabs">
+            <button class="active" data-tab="composition" onclick="showTab(event)">Composition</button>
+            <button data-tab="analysis" onclick="showTab(event)">Guaranteed Analysis</button>
+            <button data-tab="feeding" onclick="showTab(event)">Feeding Recommendation</button>
+            <button data-tab="benefits" onclick="showTab(event)">Benefits</button>
+          </div>
+
+          <div id="composition" style="margin-top:18px">
+            <h4>Composition (example)</h4>
+            <table>
+              <thead><tr><th>Ingredient</th><th>%</th></tr></thead>
+              <tbody>
+                <tr><td>Maize</td><td>45</td></tr>
+                <tr><td>Soybean Meal</td><td>18</td></tr>
+                <tr><td>Wheat Bran</td><td>12</td></tr>
+                <tr><td>Mineral Premix</td><td>3</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="analysis" style="display:none;margin-top:18px">
+            <h4>Guaranteed Analysis</h4>
+            <table>
+              <thead><tr><th>Nutrient</th><th>Value</th></tr></thead>
+              <tbody>
+                <tr><td>Crude Protein</td><td>18%</td></tr>
+                <tr><td>Crude Fat</td><td>5%</td></tr>
+                <tr><td>Crude Fiber</td><td>7%</td></tr>
+                <tr><td>Calcium</td><td>1.2%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="feeding" style="display:none;margin-top:18px">
+            <h4>Feeding Recommendation</h4>
+            <ul>
+              <li>Calves: 0.5–1 kg/day (based on age & weight)</li>
+              <li>Dairy cows: 2–4 kg/day in addition to roughage</li>
+              <li>Growers: 1–2 kg/day depending on growth target</li>
+            </ul>
+          </div>
+
+          <div id="benefits" style="display:none;margin-top:18px">
+            <h4>Benefits</h4>
+            <ul>
+              <li>Improved milk yield</li>
+              <li>Healthy weight gain</li>
+              <li>Balanced vitamins & minerals</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside style="width:360px">
+          <div class="card">
+            <h4>Download Datasheet</h4>
+            <p class="small">High resolution PDF with full nutrient table and feeding chart.</p>
+            <div class="download-box" style="margin-top:12px">
+              <!-- replace hrefs with real PDFs -->
+              <a class="btn" href="Tiwana-8000-DataSheet.pdf" download>Download PDF</a>
+              <a class="btn secondary" href="Tiwana-10000-DataSheet.pdf" download style="margin-left:8px">Alt PDF</a>
+            </div>
+          </div>
+
+          <div style="height:14px"></div>
+
+          <div class="card">
+            <h4>Quick Facts</h4>
+            <p class="small">Bag sizes: 10kg, 20kg, 25kg, 50kg — Wholesale & Retail rates available. LTL & bulk transport supported.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOADS -->
+  <section class="section" id="downloads">
+    <div class="container">
+      <h2>Downloads</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+        <div class="card">
+          <h4>Tiwana 8000 - Datasheet</h4>
+          <p class="small">Nutrition, composition & feeding chart.</p>
+          <a href="Tiwana-8000-DataSheet.pdf" download class="btn" style="margin-top:10px">Download</a>
+        </div>
+        <div class="card">
+          <h4>Tiwana Milk Plus - Brochure</h4>
+          <p class="small">Benefits for lactating cows & user guide.</p>
+          <a href="Tiwana-Milk-Plus-Brochure.pdf" download class="btn" style="margin-top:10px">Download</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Dealers & contact -->
+  <section class="section" id="dealers">
+    <div class="container">
+      <h2>Dealers & Service Areas</h2>
+      <div class="two-col">
+        <div>
+          <p class="small">We deliver across nearby talukas and districts. Contact our sales team for bulk pricing and transport.</p>
+          <ul style="margin-top:12px">
+            <li>City Centre — Free delivery above ₹1500</li>
+            <li>Nearby Taluka — ₹50 delivery charge</li>
+            <li>Outside region — Call for rates</li>
+          </ul>
+          <div style="margin-top:14px">
+            <h4>Nearby Dealers</h4>
+            <ul>
+              <li>Dealer A — Phone: +91 98765 43210</li>
+              <li>Dealer B — Phone: +91 91234 56789</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside>
+          <div class="map card" aria-hidden="true">Map placeholder (embed Google Maps iframe or image)</div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2>Contact & Orders</h2>
+      <div class="two-col">
+        <form class="card" id="contactForm" onsubmit="event.preventDefault(); submitContact()">
+          <label class="small">Name</label>
+          <input id="c_name" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px">
+          <label class="small">Phone / WhatsApp</label>
+          <input id="c_phone" placeholder="+91 9xxxxxxxxx" required style="padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px">
+          <label class="small">Message / Order details</label>
+          <textarea id="c_msg" rows="4" placeholder="I want to order 10 bags of Tiwana 8000..." style="padding:10px;border-radius:8px;border:1px solid #eee;margin-bottom:8px"></textarea>
+          <div style="display:flex;gap:10px">
+            <button class="btn" type="submit">Send</button>
+            <a id="whatsappOrderBtn" class="btn secondary" href="#" target="_blank" style="text-decoration:none">WhatsApp Order</a>
+          </div>
+        </form>
+
+        <aside>
+          <div class="card">
+            <h4>Call / WhatsApp</h4>
+            <p class="small"><strong>+91 98765 43210</strong></p>
+            <p class="small">Mon–Sat, 9:00–18:00</p>
+            <div style="margin-top:10px">
+              <a class="btn" href="tel:+919876543210">Call Now</a>
+              <a class="btn secondary" href="https://wa.me/919876543210" target="_blank">WhatsApp</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART floating CTA -->
+  <div id="cart" role="button" onclick="openCart()" title="Open cart">
+    🛒 Cart (<span id="floatCartCount">0</span>)
+  </div>
+
+  <!-- Slide-out Cart Panel -->
+  <aside class="cart-panel" id="cartPanel" aria-hidden="true">
+    <header>
+      <strong>Your Order</strong>
+      <button onclick="closeCart()" style="background:transparent;border:0;font-size:18px">✕</button>
+    </header>
+    <div class="cart-list" id="cartList">
+      <!-- injected -->
+    </div>
+    <div class="cart-footer">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div class="small">Subtotal</div>
+          <div style="font-weight:800">₹ <span id="cartTotal">0</span></div>
+        </div>
+        <div>
+          <button class="btn" onclick="startCheckout()">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <footer style="margin-top:30px">
+    <div class="container" style="padding:28px 0;text-align:center">
+      <div style="margin-bottom:8px">© 2025 Tiwana Cattle Feed Dealership</div>
+      <div class="small">Site built for dealer use — replace this footer with your company info.</div>
+    </div>
+  </footer>
+
+<script>
+/* ===========================
+   Data & initialization
+   =========================== */
+const products = [
+  {id:'8000', name:'Tiwana 8000', price:1350, image:'Tiwana-8000-Shadow-1072x1536 (1).png', category:'Dairy', description:'For increased milk yield'},
+  {id:'10000', name:'Tiwana 10000', price:1650, image:'Tiwana-10000-1072x1536.png', category:'Dairy', description:'High energy dairy feed'},
+  {id:'milkplus', name:'Tiwana Milk Plus', price:1550, image:'Tiwana-Milk-Plus-1072x1536.png', category:'Dairy', description:'Milk booster formula'},
+  {id:'buff', name:'Buff Special', price:1600, image:'Tiwana-8000-Shadow-1072x1536 (1).png', category:'Grower', description:'Buffalo focused nutrition'},
+  {id:'starter', name:'Calf Starter', price:1000, image:'calf-starter-1-1072x1536.png', category:'Starter', description:'Starter feed for calves'},
+  {id:'grower', name:'Calf Grower', price:1750, image:'calf-grover-1-1072x1536.png', category:'Grower', description:'Growth formulation'},
+  {id:'t20', name:'T-20 Dry', price:1950, image:'t20-DRY-1072x1536.png', category:'Supplements', description:'Dry balanced feed'},
+  {id:'heifer', name:'Heifer Dry', price:1350, image:'dry-heifer-1072x1536.png', category:'Grower', description:'Heifer formulation'},
+  {id:'35p', name:'35% Protein', price:1350, image:'35-pro-1-1072x1536.png', category:'Supplements', description:'High protein mix'}
+];
+
+let cart = [];
+
+/* ---------- populate gallery & product select ---------- */
+const galleryRow = document.getElementById('galleryRow');
+const quickProduct = document.getElementById('quickProduct');
+
+products.forEach(p=>{
+  // gallery
+  const img = document.createElement('img');
+  img.src = p.image;
+  img.alt = p.name;
+  galleryRow.appendChild(img);
+
+  // quick select
+  const opt = document.createElement('option');
+  opt.value = p.id; opt.textContent = p.name; quickProduct.appendChild(opt);
+});
+
+/* ---------- render product cards ---------- */
+function renderProducts(list = products){
+  const container = document.getElementById('productList');
+  container.innerHTML = '';
+  list.forEach((p,idx)=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="media"><img src="${p.image}" alt="${p.name}" style="height:170px;object-fit:cover;justify-content:center;
+    align-items:center;border-radius:8px"></div>
+      <h4>${p.name}</h4>
+      <div class="small">${p.description}</div>
+      <div class="row">
+        <div class="pill">₹${p.price}</div>
+        <button class="btn" style="margin-left:auto" onclick="addToCart('${p.id}')">Add to Cart</button>
+        <a class="btn secondary" href="https://wa.me/91YOURNUMBER?text=I%20want%20to%20order%20${encodeURIComponent(p.name)}" target="_blank" style="text-decoration:none;margin-left:8px">WhatsApp</a>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+renderProducts();
+
+/* ---------- search / filter ---------- */
+document.getElementById('search').addEventListener('input', e=>{
+  const q = e.target.value.trim().toLowerCase();
+  const filtered = products.filter(p=>p.name.toLowerCase().includes(q));
+  renderProducts(filtered);
+});
+function applyFilter(){
+  const cat = document.getElementById('filterCat').value;
+  if(!cat) return renderProducts();
+  renderProducts(products.filter(p=>p.category===cat));
+}
+
+/* =========== Cart ========== */
+function addToCart(id){
+  const p = products.find(x=>x.id===id);
+  if(!p) return alert('Product not found');
+  cart.push({...p, qty:1});
+  updateCartUI();
+}
+function updateCartUI(){
+  document.getElementById('cartCount').textContent = cart.length;
+  document.getElementById('floatCartCount').textContent = cart.length;
+  const list = document.getElementById('cartList');
+  list.innerHTML = '';
+  let total = 0;
+  cart.forEach((it,idx)=>{
+    total += it.price * it.qty;
+    const row = document.createElement('div');
+    row.style.display='flex'; row.style.justifyContent='space-between'; row.style.alignItems='center'; row.style.padding='10px 0';
+    row.innerHTML = `<div><strong>${it.name}</strong><div class="small">₹${it.price} × ${it.qty}</div></div>
+                     <div style="display:flex;gap:8px;align-items:center">
+                       <button class="small" onclick="changeQty(${idx}, -1)">-</button>
+                       <div>${it.qty}</div>
+                       <button class="small" onclick="changeQty(${idx}, 1)">+</button>
+                       <button style="margin-left:8px" onclick="removeItem(${idx})">Remove</button>
+                     </div>`;
+    list.appendChild(row);
+  });
+  document.getElementById('cartTotal').textContent = total;
+  document.getElementById('totalAmount').textContent = total;
+}
+function changeQty(idx, delta){
+  cart[idx].qty = Math.max(1, cart[idx].qty + delta);
+  updateCartUI();
+}
+function removeItem(idx){ cart.splice(idx,1); updateCartUI(); }
+function openCart(){ document.getElementById('cartPanel').classList.add('open'); document.getElementById('cartPanel').setAttribute('aria-hidden','false'); }
+function closeCart(){ document.getElementById('cartPanel').classList.remove('open'); document.getElementById('cartPanel').setAttribute('aria-hidden','true'); }
+
+/* ---------- Quick order & contact ---------- */
+function quickOrder(){
+  const name = document.getElementById('quickName').value||'';
+  const phone = document.getElementById('quickPhone').value||'';
+  const pid = document.getElementById('quickProduct').value;
+  const p = products.find(x=>x.id===pid);
+  const text = `Hello, ${name} (${phone}) - I want to order ${p? p.name : 'products'}. Please contact me.`;
+  const waUrl = `https://wa.me/91YOURNUMBER?text=${encodeURIComponent(text)}`;
+  document.getElementById('quickWhats').href = waUrl;
+  window.open(waUrl,'_blank');
+}
+function submitContact(){
+  const name = document.getElementById('c_name').value||'';
+  const phone = document.getElementById('c_phone').value||'';
+  const msg = document.getElementById('c_msg').value||'';
+  const wa = `https://wa.me/919876543210?text=${encodeURIComponent('Name: '+name+' | Phone: '+phone+' | Msg: '+msg)}`;
+  alert('Thanks! Opening WhatsApp to send your order contact.');
+  window.open(wa,'_blank');
+  document.getElementById('contactForm').reset();
+}
+
+/* ---------- Tabs ---------- */
+function showTab(e){
+  const tab = e.currentTarget.dataset.tab;
+  // toggle active
+  document.querySelectorAll('#nutriTabs button').forEach(b=>b.classList.remove('active'));
+  e.currentTarget.classList.add('active');
+  // show/hide
+  ['composition','analysis','feeding','benefits'].forEach(id => {
+    document.getElementById(id).style.display = (id===tab) ? 'block' : 'none';
+  });
+}
+
+/* ---------- Admin - add product ---------- */
+function addProduct(){
+  const name = document.getElementById('pName').value.trim();
+  const price = Number(document.getElementById('pPrice').value);
+  const img = document.getElementById('pImage').value.trim();
+  if(!name || !price || !img) return alert('Please fill all product fields');
+  const id = 'p'+Math.floor(Math.random()*99999);
+  products.push({id,name,price,image:img,category:'Misc',description:'Added from admin panel'});
+  renderProducts();
+  alert('Product added (client-side only). To persist changes, integrate a backend.');
+}
+
+/* ---------- Checkout (Razorpay placeholder) ---------- */
+function startCheckout(){
+  if(cart.length===0) return alert('Cart is empty');
+  // Here you should call your server to create an order with amount and order items,
+  // then call Razorpay checkout with the returned order_id and key.
+  // Below is a placeholder flow.
+  alert('Proceeding to checkout — Razorpay integration placeholder.');
+  // Example (replace with real flow):
+  // fetch('/create-order',{method:'POST',body: JSON.stringify({amount: total})}) -> returns {id: 'order_XXXX'}
+  // then load Razorpay script and open checkout with options: key, order_id, prefill etc.
+}
+
+/* ---------- small UX: populate quick select with default ---------- */
+document.getElementById('quickProduct').selectedIndex = 0;
+
+/* ---------- initial UI state ---------- */
+updateCartUI();
+
+</script>
+</body>
+</html>
