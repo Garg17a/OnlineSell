@@ -31,7 +31,7 @@ function renderProducts(){
             <h3>${p.name}</h3>
             <p><strong>₹${p.price}</strong></p>
             <button class="btn cart-btn" onclick="addToCart(${i})">Add to Cart</button>
-            <a href="https://wa.me/91YOURNUMBER?text=I want to order ${p.name}" target="_blank">
+            <a href="https://wa.me/918607457689?text=I want to order ${p.name}" target="_blank">
                 <button class="btn">WhatsApp Order</button>
             </a>
         </div>`;
